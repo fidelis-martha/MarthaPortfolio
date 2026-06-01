@@ -1,74 +1,4 @@
 
-
-
-// const projects = [
-//   {
-//     id: 1,
-//     title: "E-Commerce Website",
-//     category: "Frontend",
-//   },
-//   {
-//     id: 2,
-//     title: "Crypto Dashboard",
-//     category: "Web3",
-//   },
-//   {
-//     id: 3,
-//     title: "Task Manager",
-//     category: "Frontend",
-//   },
-//   {
-//     id: 4,
-//     title: "NFT Marketplace",
-//     category: "Web3",
-//   },
-//   {
-//     id: 5,
-//     title: "Student Safety System",
-//     category: "Fullstack",
-//   },
-// ];
-
-// // const filteredprojects = projects.filter(project => project.title.includes(input.value));
-// // console.log(filteredprojects); 
-
-// // funtion to display projects
-// const projectContainer = document.querySelector('.projectcontainer');
-// const displayprojects = (projectToShow) =>{
-//     projectContainer.innerHTML = "";
-
-//     projectToShow.forEach((project) =>{
-//         const projectCard = document.createElement("div");
-
-//         projectCard.innerHTML = `
-//         <h3>${project.title}</h3>
-//         <p>${project.category}</p>
-//         `;
-
-//         // to add this card to the project container i create in my html file
-//         projectContainer.appendChild(projectCard);
-
-
-//     })
-// }
-// const form = document.getElementById('form');
-// const input = document.getElementById('desktop-search');
-// form.addEventListener("input", (e)=>{
-//     e.preventDefault();
-//     console.log("Stored");
-//     console.log(form);
-// console.log(input);
-// console.log(projectContainer);
-    
-//     const searchTerm = e.target.value.toLowerCase();
-//     const filteredProjects = projects.filter(project => project.title.toLowerCase().includes(searchTerm));
-//     displayprojects(filteredProjects)
-//    console.log("project filtere")
-// })
-// displayprojects(projects) 
- 
-
-
 const input = document.getElementById('desktop-search');
 const suggestionsContainer = document.getElementById('suggestions');
 const projects = [
@@ -80,19 +10,18 @@ const projects = [
 ];
 
 input.addEventListener('input', (e)=>{
-    const term = e.target.value.toLowerCase();
+    const term = e.target.value.trim();
     if(term === "" ){
         suggestionsContainer.innerHTML = "";
         return;
     }
-
-    // if (term !== projects.title) {
-    //     suggestionsContainer.innerHTML = "no result found";
-        
-    // }
  
     const filtered = projects.filter(project=> project.title.toLowerCase().includes(term));
-    console.log("filter",filtered);
+
+    if(filtered.length === 0){
+        suggestionsContainer.innerHTML = "<p class='p-2'>No results found</p>";
+        return;
+    }
     renderSuggestions(filtered);
 })
 
@@ -119,4 +48,4 @@ const renderSuggestions = (list) =>{
     }) 
     suggestionsContainer.appendChild(item);
     })
-}
+} 
