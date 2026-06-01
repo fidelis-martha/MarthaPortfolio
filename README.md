@@ -22,7 +22,7 @@ Welcome to my personal portfolio website! This project showcases my skills, proj
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- Tailwind CSS
+- Tailwind CSS 
 - Git & GitHub
 
 ## 📂 Project Structure
@@ -34,8 +34,6 @@ portfolio/
 ├── assets/
 │   ├── images/
 │   ├── icons/
-│
-│
 ├── js/
 │   └── index.js
 │

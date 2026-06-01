@@ -38,9 +38,6 @@ const renderSuggestions = (list) =>{
         <h3>${project.title}</h3>
         
      `;
-
-
-    // item.textContent = project.title;
     suggestionsContainer.appendChild(item);
 
     item.addEventListener("click", ()=>{
