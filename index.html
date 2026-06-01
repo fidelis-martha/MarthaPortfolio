@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="./index.js" defer></script>
+  <title>Portfolio(Filter)</title>
+</head>
+
+<body class="bg-purple-200">
+
+
+  <section>
+    <nav
+      class="sticky  top-0 z-50 bg-white shadow-md transition-colors duration-300 dark:bg-slate-900 dark:shadow-slate-900/50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between gap-4">
+
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="#" class="text-xl font-bold tracking-tight text-slate-800 transition-colors dark:text-white">
+              Marth<span class="text-indigo-600 dark:text-indigo-400">Folio</span>
+            </a>
+          </div>
+
+          <!-- Desktop Navigation Links & Search Wrapper -->
+          <div class="hidden md:flex md:flex-1 md:items-center md:justify-between md:space-x-4">
+            <!-- Links -->
+            <div class="flex space-x-6">
+              <a href="#"
+                class="rounded-md px-2 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Home</a>
+              <a href="#"
+                class="rounded-md px-2 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">About</a>
+              <a href="#"
+                class="rounded-md px-2 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Services</a>
+              <a href="#"
+                class="rounded-md px-2 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Contact</a>
+            </div>
+
+
+
+          </div>
+
+          <!-- Desktop Action Button -->
+          <div class="hidden md:block">
+            <button
+              class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="flex md:hidden">
+            <button id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu"
+              aria-label="Toggle navigation menu"
+              class="inline-flex items-center justify-center rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
+              <!-- Hamburger Icon Open -->
+              <svg id="menu-icon-open" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <!-- Hamburger Icon Close -->
+              <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu"
+        class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out md:hidden bg-slate-50 dark:bg-slate-950">
+        <div class="space-y-1 px-4 py-3 sm:px-6 border-t border-slate-200 dark:border-slate-800">
+
+          <!-- Mobile Search Bar (Top of mobile dropdown) -->
+
+
+          <!-- Mobile Links -->
+          <a href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-indigo-400">Home</a>
+          <a href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-indigo-400">About</a>
+          <a href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-indigo-400">Services</a>
+          <a href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-indigo-400">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+
+      menuBtn.addEventListener('click', () => {
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', !isExpanded);
+
+        if (!isExpanded) {
+          mobileMenu.classList.remove('max-h-0', 'opacity-0');
+          // Increased max-h property from 64 to 96 to fit the new mobile search layout smoothly
+          mobileMenu.classList.add('max-h-96', 'opacity-100');
+
+          iconOpen.classList.replace('block', 'hidden');
+          iconClose.classList.replace('hidden', 'block');
+        } else {
+          mobileMenu.classList.remove('max-h-96', 'opacity-100');
+          mobileMenu.classList.add('max-h-0', 'opacity-0');
+
+          iconOpen.classList.replace('hidden', 'block');
+          iconClose.classList.replace('block', 'hidden');
+        }
+      });
+    </script>
+
+  </section>
+
+
+  <section class="mt-5">
+
+    <div class="grid bg-gray-200 rounded-2xl w-[90%] grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 m-auto p-">
+      <div class="h-full rounded-lg  dark:bg-slate-700 p-10 md:w-[90%] m-auto bg-re">
+        <div class="bg--300 h-full rounded-lg p-1 lg:p-10 ">
+          <div class="icons flex gap-4 mb-4 ">
+            <a href="https://github.com/fidelis-martha">
+              <img src="./icons/github.png" alt="" class="w-6">
+
+            </a>
+            <a href="https://www.instagram.com/fidelis_martha89?igsh=MXFwNWhzaHVvYzJhdQ==">
+
+              <img src="./icons/instagram.png" alt="" class="w-6">
+            </a>
+
+            <a href="https://x.com/martha_fidelis?t=UW7XFpdWruPv8EPC6Z8JWw&s=09">
+              <img src="./icons/x.png" alt="" class="w-6">
+            </a>
+
+
+          </div>
+          <h1 class="text-3xl font-bold text-slate-800 dark:text-white font-mono ">Hi, I'm Martha</h1>
+          <p class="mt-2 mb-3 text-lg text-black dark:text-slate-300 font-sans font-light">
+            <!-- A passionate web developer
+            specializing in
+            creating dynamic and responsive websites. With a strong foundation in HTML, CSS, and JavaScript, I bring
+            ideas to life on the web. -->
+
+            A passionate frontend Developer passionate about building responsive and user-friendly web applications.
+
+            Currently expanding into Backend Development and Blockchain, with a strong interest in Web3 technologies and
+            digital innovation.
+          </p>
+
+          <a href="./Martha Fidelis cv.pdf"
+            class="mt-6 rounded-lg bg-purple-600 px-4 py-2  text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">
+            Download CV
+          </a>
+        </div>
+      </div>
+      <div class=" h-full rounded-lg dark:bg-slate-700 hidden md:hidden lg:block p-10 bg--500 ">
+        <img src="./icons/bannerImg3.png" alt="" class="h-full w-full object-cover rounded-lg">
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+
+
+
+  <section class="w-full bg-ed-500 p-3">
+    <div
+      class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 p-10 gap-2  bg-gray-200 w-[ md:w-[90%] m-auto mt-5 rounded-2xl">
+      <div class="h-full bg-gren-500 rounded-lg  dark:bg-slate-700  p-1 lg:p-10 ">
+        <!-- <div class="bg-purple-300 h-full rounded-lg p-10"> -->
+        <h1 class="text-3xl font-bold text-slate-800 dark:text-white font-mono ">About Me</h1>
+        <p class="mt-2 text-lg text-black dark:text-slate-300 font-sans font-light">A passionate web developer
+          specializing in
+          creating dynamic and responsive websites. With a strong foundation in HTML, CSS, and JavaScript, I bring
+          ideas to life on the web.</p>
+
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">
+          View All Projects
+        </button>
+        <!-- </div> -->
+
+
+      </div>
+      <div class="h-full rounded-lg bg--500  dark:bg-slate-700 p-10 hidden md:hidden lg:block ">
+        <!-- <div class="bg-purple-300 h-full rounded-lg p-10"> -->
+        <h1 class="text-3xl font-bold text-slate-800 dark:text-white font-mono "></h1>
+
+        <img src="./icons/bannerImg3.png" alt="">
+
+
+
+      </div>
+
+
+    </div>
+
+
+    </div>
+  </section>
+
+
+  <section class="max-w-6xl mx-auto px-4 py-12 bg-gray-200 rounded-2xl mt-5">
+    <h2 class="text-3xl font-bold mb-8 text-center">My Skills</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-50 text-2xl">
+            <img src="./icons/css.png" alt="">
+          </div>
+          <h3 class="text-lg font-bold text-slate-800">CSS</h3>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500 font-medium">Proficiency</span>
+            <span class="text-slate-900 font-bold">85%</span>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-slate-900 h-2.5 rounded-full" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-10 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-50 text-2xl">
+            <img src="./icons/html.png" alt="">
+          </div>
+          <h3 class="text-lg font-bold text-slate-800">Html</h3>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500 font-medium">Proficiency</span>
+            <span class="text-slate-900 font-bold">85%</span>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-orange-500 h-2.5 rounded-full" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-10 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-50 text-2xl">
+            <img src="./icons/js.png" alt="Javascript">
+          </div>
+          <h3 class="text-lg font-bold text-slate-800">Javascript</h3>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500 font-medium">Proficiency</span>
+            <span class="text-slate-900 font-bold">85%</span>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 85%;"></div>
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="bg-white p-10 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-50 text-2xl">
+            <img src="./icons/tailwind.png" alt="Tailwind CSS">
+          </div>
+          <h3 class="text-lg font-bold text-slate-800">tailwind css</h3>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500 font-medium">Proficiency</span>
+            <span class="text-slate-900 font-bold">85%</span>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-blue-500 h-2.5 rounded-full" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+
+
+
+  <section class="max-w-6xl mx-auto px-4 py-12 bg-gray-200 rounded-2xl mt-5">
+
+
+
+
+    <h2 class="text-3xl font-bold mb-8 text-center">My Projects</h2>
+    <p class="text-slate-600 text-center mb-">Here are some of the projects I've worked on:</p>
+    <form action="" id="form" class="w-full mt-6">
+      <!-- Desktop Search Bar -->
+      <div class="relative w-full max h-full ">
+        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.602 10.602Z" />
+          </svg>
+        </div>
+        <input type="text" id="desktop-search" placeholder="Search for my Projects..."
+          class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-1.5 pl-9 pr-4 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400 dark:focus:border-indigo-400 dark:focus:bg-slate-900">
+      </div>
+      </div>
+    </form>
+
+
+    <p id="suggestions" class="p-3"></p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <img src="./icons/todolist.png" alt="Project 1" class="w-full h-28 object-cover rounded-lg mb-4">
+        <h3 class="text-lg font-bold text-slate-800">Task Manager</h3>
+        <p class="text-slate-600 text-sm font-sans font-medium mt-3">
+          A streamlined productivity application built with Tailwind CSS, designed to help
+          users organize their daily goals and manage their time effectively.</p>
+        <a href="https://fidelis-martha.github.io/To-Do-List-App/"
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">View
+          Details</a>
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">GitHub</button>
+
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <img src="./icons/landdingpage.png" alt="Project 1" class="w-full h-28 object-cover rounded-lg mb-4">
+        <h3 class="text-lg font-bold text-slate-800">Landing Page</h3>
+        <p class="text-slate-600 mt-2 font-sans font-medium text-sm">
+          A streamlined productivity application built with Tailwind CSS,
+          designed to help users organize their daily goals and manage their time effectively.</p>
+        <a href="https://fidelis-martha.github.io/Aurascalesolution/#Home"
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">View
+          Details</a>
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">GitHub</button>
+
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <img src="./icons/e-commerce.png" alt="Project 1" class="w-full h-28 object-cover rounded-lg mb-4">
+        <h3 class="text-lg font-bold text-slate-800">E-commerce Website</h3>
+        <p class="text-slate-600 mt-2 font-sans font-medium text-sm mb-5">
+          A fully functional e-commerce
+          storefront that demonstrates skills in building scalable, user-centric web applications.</p>
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">View
+          Details</button>
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">GitHub</button>
+
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+        <img src="./icons/nft.png" alt="Project 1" class="w-full h-28 object-cover rounded-lg mb-4">
+        <h3 class="text-lg font-bold text-slate-800">Nft Marketplace </h3>
+        <p class="text-slate-600 mt-2 font-sans font-medium text-sm mb-3">
+          A decentralized application prototype highlighting your interest in the Web3 ecosystem, blockchain
+          integration, and NFT technologies.</p>
+        <a href="https://umbathreads.dream.space/home"
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">View
+          Details</a>
+        <button
+          class="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">GitHub</button>
+
+      </div>
+
+
+  </section>
+
+
+
+
+  <section class="w-full bg-ed-500 ">
+    <div
+      class="grid grid-cols-1 md:grid-cols-q lg:grid-cols-2  gap-2  bg-gray-200 w-[ md:w-[90%] m-auto mt-5 rounded-2xl">
+      <div class="h-full bg-gren-500 rounded-lg  dark:bg-slate-700 p-10">
+        <!-- <div class="bg-purple-300 h-full rounded-lg p-10"> -->
+        <h1 class="text-3xl font-bold text-slate-800 dark:text-white font-mono text-center mb-5 ">Get In Touch</h1>
+
+        <form action="" class="mt- bg-purple-100 p-4 rounded-lg">
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
+            <input type="text" id="name" name="name"
+              class="mt-1  block w-full rounded-md border border-slate-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+          </div>
+          <div class="mb-2">
+            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+            <input type="email" id="email" name="email"
+              class="mt-1 block w-full rounded-md border border-slate-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+          </div>
+          <div class="mb-2">
+            <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+            <textarea id="message" name="message" rows="4"
+              class="mt-1 block w-full rounded-md border border-slate-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"></textarea>
+          </div>
+          <button type="submit"
+            class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow dark:bg-indigo-500 dark:hover:bg-indigo-400">Send
+            Message</button>
+        </form>
+
+
+      </div>
+      <div class="h-full rounded-lg bg--500  dark:bg-slate-700 p-10 hidden md:hidden lg:block ">
+        <!-- <div class="bg-purple-300 h-full rounded-lg p-10"> -->
+        <h1 class="text-3xl font-bold text-slate-800 dark:text-white font-mono "></h1>
+
+        <img src="./icons/bannerImg3.png" alt="">
+
+
+
+      </div>
+
+
+    </div>
+
+
+    </div>
+  </section>
+
+
+  <footer class="mt-12 border-t border-gray-200 py-6 text-center text-sm text-gray-600">
+    <p>&copy; 2026 Your Name. All rights reserved.</p>
+    <p class="mt-2">
+      Built with ❤️ using HTML, CSS, JavaScript & Tailwind CSS
+    </p>
+  </footer>
+
+</body>
+
+</html>
