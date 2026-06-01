@@ -41,31 +41,6 @@ portfolio/
 │
 └── README.md
 ```
-
-## 💻 Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/portfolio.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd portfolio
-```
-
-3. Open `index.html` in your browser or run with Live Server.
-
-## 📸 Screenshots
-
-Add screenshots of your portfolio here.
-
-```md
-![Portfolio Screenshot](assets/images/screenshot.png)
-```
-
 ## 🎯 Goals of This Project
 
 - Showcase my technical skills
@@ -75,10 +50,9 @@ Add screenshots of your portfolio here.
 
 ## 📫 Contact Me
 
-- Email: your-email@example.com
-- LinkedIn: https://linkedin.com/in/your-profile
-- GitHub: https://github.com/yourusername
-- X (Twitter): https://twitter.com/yourusername
+- Email: fidelismartha23@gmail.com
+- GitHub: https://github.com/fidelis-martha
+- X (Twitter):https://x.com/martha_fidelis?t=UW7XFpdWruPv8EPC6Z8JWw&s=09
 
 ## 🤝 Contributing
 
